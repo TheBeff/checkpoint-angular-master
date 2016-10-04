@@ -12,6 +12,7 @@ app.config(function($stateProvider){
 			todos: function(Todo){
 				return Todo.getAll();
 			}
-		}
+		},
+		controller: 'TodoListCtrl'
 	  });
 });
