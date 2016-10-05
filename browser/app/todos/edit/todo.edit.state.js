@@ -8,7 +8,12 @@ app.config(function($stateProvider){
 	$stateProvider
 	  .state('todos.edit', {
 	  	url:'/:id/edit',
-	  	templateUrl: './todo.edit.html'
+	  	templateUrl: './todo.edit.html',
+	  	resolve: {
+	  		todo: function(Todo, $stateParams){
+	  			return Todo.getOne($stateParams.id);
+	  		}
+	  	}
 	  });
 
 })
