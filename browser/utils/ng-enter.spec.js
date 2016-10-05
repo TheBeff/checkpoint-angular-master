@@ -8,7 +8,7 @@ var expect = chai.expect;
 // to enable this extra credit, change `xdescribe` below
 // to just `describe`.
 
-xdescribe('ng-enter directive', function () {
+describe('ng-enter directive', function () {
   // if you are curious how this is being used,
   // check out line 6 of todo.item.html
 

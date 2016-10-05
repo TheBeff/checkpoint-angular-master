@@ -15,6 +15,19 @@
 // you would not normally use this kind of syntax, just an inline function.
 
 app.directive('ngEnter', ngEnterDirective = function () {
-  // your code here
-  return {};
+
+  return {
+  	restrict: 'A',
+  	scope: {
+  		ngEnter: '&',
+  	},
+  	link: function(scope, element){
+  		element.bind("keydown", function(event){
+  			if(event.which === 13){
+  				scope.ngEnter();
+  			}
+  		})
+  	}
+  };
+
 });
