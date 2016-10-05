@@ -5,6 +5,11 @@
 app.factory('Todo', function($http){
 	
 	var Todo = {};
+	var cachedTodos = [];
+
+	function removeFromCache(todo){
+		cachedTodos.splice(cachedTodos.indexOf(todo) , 1);
+	}
 
 	Todo.getOne = function(id){
 		return $http.get('/api/todos/' + id)
@@ -16,17 +21,22 @@ app.factory('Todo', function($http){
 	Todo.getAll = function(){
 		return $http.get('/api/todos')
 		  .then(function(todos){
+		  	cachedTodos = todos.data;
 		  	return todos.data;
 		  });
 	};
 
 	Todo.destroy = function(id){
-		return $http.delete('/api/todos/' + id);
+		return $http.delete('/api/todos/' + id)
+		  .then(function(todo){
+		  	removeFromCache(todo.data);
+		  });
 	};
 
 	Todo.add = function(todo){
 		return $http.post('/api/todos/', todo)
 		  .then(function(todo){
+		  	cachedTodos.push(todo.data);
 		  	return todo.data;
 		  });
 	};

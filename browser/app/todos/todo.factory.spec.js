@@ -134,7 +134,7 @@ describe('`Todo` factory', function () {
   // of the assessment. If you want to try it, change `xdescribe` to
   // `describe`.
 
-  xdescribe('cached todo list', function () {
+  describe('cached todo list', function () {
 
     var cachedTodos;
     beforeEach(function (done) {

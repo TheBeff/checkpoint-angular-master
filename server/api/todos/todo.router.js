@@ -51,9 +51,10 @@ router.put('/:id', function (req, res, next) {
 });
 
 router.delete('/:id', function (req, res, next) {
+	var todo = req.todo;
 	req.todo.destroy()
 	.then(function () {
-		res.status(204).end();
+		res.status(204).json(todo);
 	})
 	.catch(next);
 });
